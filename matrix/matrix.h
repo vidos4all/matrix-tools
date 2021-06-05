@@ -10,7 +10,6 @@ public:
 	void recreateMatrix(size_t size);
 
 	// PROPERTIES
-	double& Element(int x, int y);
 	size_t& Height();
 	size_t& Width();
 
@@ -22,6 +21,29 @@ public:
 	}
 
 	Matrix(int size) : Matrix(size, size) { };
+
+	// IN-CLASS OPERATOR OVERRIDES
+	double& operator () (const int& x, const int& y)
+	{
+		return matrix[x][y];
+	}
+
+	Matrix& operator = (Matrix& m)
+	{
+		if (this == &m)
+			return *this;
+
+		recreateMatrix(m.Width(), m.Height());
+		for (size_t j = 0; j < m.Height(); j++)
+		{
+			for (size_t i = 0; i < m.Width(); i++)
+			{
+				matrix[i][j] = m(i, j);
+			}
+		}
+
+		return *this;
+	}
 
 private:
 	double** matrix;

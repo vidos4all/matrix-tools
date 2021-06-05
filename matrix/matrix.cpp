@@ -57,11 +57,6 @@ void Matrix::deleteMatrix()
 //  *  PROPERTIES  *
 //  ****************
 
-double& Matrix::Element(int x, int y)
-{
-	return matrix[x][y];
-}
-
 size_t& Matrix::Height()
 {
 	return _height;
